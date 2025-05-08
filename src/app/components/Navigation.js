@@ -3,19 +3,19 @@ import Link from "next/link";
 
 const Navigation = () => {
   return (
-    <nav className="flex flex-row justify-center items-center bg-indigo-950 p-8">
-      <div className="mx-15">
+    <nav className="flex flex-row justify-center items-center bg-indigo-950 p-5">
+      <div>
           <Link href="/"
-                className="text-2xl text-bold text-white hover:text-sky-300"
+                className="flex flex-row text-2xl text-white hover:text-orange-100 mx-10  md:text-md mx-4"
            >
-            🪧  View noticeboard
+            🪧   <span className="hidden sm:block"> View Noticeboard</span>
           </Link>
         </div>
-        <div className="mx-15">
+        <div>
           <Link href="/newpost"
-                className="text-2xl text-bold text-white hover:text-sky-300"
+                className="flex flex-row text-2xl text-white hover:text-orange-100 mx-10 md:text-md mx-4"
            >
-           Pin a new post  📌
+           <span className="hidden sm:block">Pin a New Post </span>   📌
           </Link>
         </div>
     </nav>
