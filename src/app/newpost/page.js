@@ -7,18 +7,20 @@ export default function addNewPost()  {
   const [postObject, setPostObject] = useState({
     username:"",
     post:"",
-   })
+  })
 
-//================================================//
-   const handleInputChange = (event) => {
+  const handleInputChange = (event) => {
      
      const { name, value } = event.target;
-     setPostObject({ ... postObject, [name]:value })
-   }
-//================================================//
+     setPostObject({ ...postObject, [name]:value })
+  }
 
-   const handleSubmit = (event) => {
+
+
+  const handleSubmit = (event) => {
+
     event.preventDefault();
+
     const localStoragePosts = localStorage.getItem("posts");
 
     if (!postObject.username || !postObject.post){
@@ -29,12 +31,21 @@ export default function addNewPost()  {
     const postWithId = {... postObject, id: Date.now().toString()}
 
     if (localStoragePosts){
-      localStorage.setItem("posts", JSON.stringify([ ... JSON.parse(localStoragePosts), postWithId]))
+      localStorage.setItem("posts", JSON.stringify([ ...JSON.parse(localStoragePosts), postWithId]));
+      resetPostObject();
      } else {
-      localStorage.setItem("posts", JSON.stringify([postWithId]))
+      localStorage.setItem("posts", JSON.stringify([postWithId]));
+      resetPostObject();
     }
 
-   }
+  }
+
+  const resetPostObject = () => {
+    setPostObject({
+      username: "",
+      post: "",
+    });
+  };
 
    //================================================//
 
