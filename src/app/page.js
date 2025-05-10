@@ -1,60 +1,80 @@
-"use client"
-import { useState } from "react"; 
+"use client";
+import { useState } from "react";
 import { useEffect } from "react";
 import Post from "./components/Post";
 
 export default function Home() {
-
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
-  useEffect( ()=> {
-   
+  useEffect(() => {
     const loadPosts = () => {
+      const storedPosts = localStorage.getItem("posts");
 
-     const storedPosts = localStorage.getItem("posts")
-
-      if(storedPosts){
-       setPosts(JSON.parse(storedPosts))
-       setLoading(false)
+      if (storedPosts) {
+        setPosts(JSON.parse(storedPosts));
       }
-    }
+      setLoading(false);
+    };
 
-   loadPosts()
-  }, [])
-  
-  if (loading){
-    return(
-    <div className=" m-50 p-6 rounded-md bg-blue-100">
-      <h1>Page loading...</h1>
-    </div>
-    )}
+    loadPosts();
+  }, []);
 
-    /* TODO: debug+ update div in ternary below with the Post
-    
-    <div>
-        {posts?.map((post) => {
-          <Post
-            key={post.id}
-            id={post.id}
-            username={post.username}
-            post={post.post}
-          />
-        })}
-      </div>*/
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-xl p-4 border-3 border-indigo-500 rounded-md">
+          Loading...
+        </h1>
+      </div>
+    );
+  }
 
   return (
-
-    <div> 
-     {posts?.length === 0 ? (
-       <div> No posts have been pinned yet...</div>
-     ):(
-      <div> {posts?.map((post)=>{
-        return <div key={post.id}>{post.username}<br></br>{post.post}<br></br></div>
-      })}
+    <div className="pt-3 bg-gray-50">
+      <div className="flex flex-col items-center p-4 mt-4">
+        <div>
+          {posts.length === 0 ? (
+            <div className="text-xl p-4"> No posts have been pinned yet...</div>
+          ) : (
+            /*  TODO: === debug this section ===
+            <div>
+              {posts.map((post) => {
+                <Post
+                  key={post.id}
+                  id={post.id}
+                  username={post.username}
+                  post={post.post}
+                />;
+              })}
+            </div>
+          */
+            <div>
+              {" "}
+              {posts.toReversed().map((post) => {
+                return (
+                  <div className="flex flex-col items-center p-4 mt-4">
+                    {" "}
+                    <div
+                      className="flex flex-col items-left gap-3 p-3 rounded-sm shadow-sm shadow-indigo-900 bg-white w-full sm:w-1/2"
+                      key={post.id}
+                    >
+                      {" "}
+                      <span className="text-lg text-indigo-800 font-bold p-1">
+                        {" "}
+                        📌 {post.username}{" "}
+                      </span>{" "}
+                      <br></br>
+                      <span className="text-md p-1"> {post.post} </span>{" "}
+                      <br></br>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
-     )}
     </div>
-    
   );
 }
