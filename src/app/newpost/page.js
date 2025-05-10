@@ -15,8 +15,6 @@ export default function addNewPost()  {
      setPostObject({ ...postObject, [name]:value })
   }
 
-
-
   const handleSubmit = (event) => {
 
     event.preventDefault();
@@ -45,12 +43,14 @@ export default function addNewPost()  {
       username: "",
       post: "",
     });
+
+    alert ("Your message has been saved succecssfully!")
   };
 
-   //================================================//
+   //====================================================================================================//
 
   return (
-    <div className="p-10 bg-gray-50">
+    <div className="p-10 bg-gray-50 h-800px">
       
       <form className="w-full max-w-3xl" 
             onSubmit= { handleSubmit } >
