@@ -53,19 +53,19 @@ export default function Home() {
               {" "}
               {posts.toReversed().map((post) => {
                 return (
-                  <div className="flex flex-col items-center p-4 mt-4">
+                  <div className="flex flex-col items-center p-2 mt-2 container">
                     {" "}
                     <div
-                      className="flex flex-col items-left gap-3 p-3 rounded-sm shadow-sm shadow-indigo-900 bg-white w-full sm:w-1/2"
+                      className="flex flex-col items-left gap-3 px-4 rounded-sm shadow-sm shadow-indigo-900 bg-white container"
                       key={post.id}
                     >
                       {" "}
-                      <span className="text-lg text-indigo-800 font-bold p-1">
+                      <span className="text-lg text-indigo-800 font-bold pt-2">
                         {" "}
                         📌 {post.username}{" "}
                       </span>{" "}
                       <br></br>
-                      <span className="text-md p-1"> {post.post} </span>{" "}
+                      <span className="text-md"> {post.post} </span>{" "}
                       <br></br>
                     </div>
                   </div>
